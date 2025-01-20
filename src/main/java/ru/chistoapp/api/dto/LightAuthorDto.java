@@ -1,9 +1,9 @@
-package ru.hse.chistoapptestlib.api.dto;
+package ru.chistoapp.api.dto;
 
 import lombok.Builder;
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Data
 @Builder
@@ -14,6 +14,6 @@ public class LightAuthorDto {
 
     private String surname;
 
-    private LocalDateTime birthDate;
+    private LocalDate birthDate;
 }
 

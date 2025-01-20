@@ -1,4 +1,4 @@
-package ru.hse.chistoapptestlib.api.dto;
+package ru.chistoapp.api.dto;
 
 import lombok.Builder;
 import lombok.Data;

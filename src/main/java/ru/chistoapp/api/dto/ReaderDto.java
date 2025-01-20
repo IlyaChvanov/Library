@@ -1,8 +1,8 @@
-package ru.hse.chistoapptestlib.api.dto;
+package ru.chistoapp.api.dto;
 
 import lombok.Builder;
 import lombok.Data;
-import ru.hse.chistoapptestlib.store.Gender;
+import ru.chistoapp.store.Gender;
 
 import java.time.LocalDate;
 

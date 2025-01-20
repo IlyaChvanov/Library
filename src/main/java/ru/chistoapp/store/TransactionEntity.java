@@ -1,4 +1,4 @@
-package ru.hse.chistoapptestlib.store;
+package ru.chistoapp.store;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -6,23 +6,25 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @NoArgsConstructor
-@Setter
 @Getter
-@Table(name = "book")
-public class BookEntity {
+@Setter
+@Table(name = "transaction")
+public class TransactionEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
+    private Operation operation;
 
-    @ManyToMany(mappedBy = "books")
-    private List<AuthorEntity> authors;
+    private LocalDateTime dateAndTime;
 
-    private LocalDateTime publishedDate;
+    @ManyToOne
+    private ReaderEntity client;
+
+    @ManyToOne
+    private BookEntity book;
 }
