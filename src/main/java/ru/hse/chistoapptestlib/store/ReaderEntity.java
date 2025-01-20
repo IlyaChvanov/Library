@@ -27,8 +27,6 @@ public class ReaderEntity {
     private Gender gender;
 
     private LocalDate birthDate;
+
 }
 
-enum Gender {
-    MALE, FEMALE, OTHER
-}

@@ -28,8 +28,3 @@ public class TransactionEntity {
     @ManyToOne
     private BookEntity book;
 }
-
-enum Operation {
-    TAKE,
-    RETURN
-}
