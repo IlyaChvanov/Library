@@ -1,8 +1,10 @@
 package ru.chistoapp.api.factory;
 
+import org.springframework.stereotype.Component;
 import ru.chistoapp.api.dto.LightBookDto;
 import ru.chistoapp.store.BookEntity;
 
+@Component
 public class LightBookDtoFactory {
 
         public LightBookDto makeLightBookDto(BookEntity bookEntity) {

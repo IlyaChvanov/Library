@@ -19,6 +19,7 @@ public class BookEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private String title;
 
     @ManyToMany(mappedBy = "books")

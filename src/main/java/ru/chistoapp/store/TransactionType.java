@@ -1,6 +1,6 @@
 package ru.chistoapp.store;
 
-public enum Operation {
+public enum TransactionType {
     TAKE,
     RETURN
 }

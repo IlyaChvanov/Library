@@ -1,11 +1,13 @@
 package ru.chistoapp.api.factory;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import ru.chistoapp.api.dto.BookDto;
 import ru.chistoapp.store.BookEntity;
 
 import java.util.stream.Collectors;
 
+@Component
 @RequiredArgsConstructor
 public class BookDtoFactory {
     private final LightAuthorDtoFactory lightAuthorDtoFactory;

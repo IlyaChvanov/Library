@@ -18,9 +18,9 @@ public class TransactionEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Operation operation;
+    private TransactionType transactionType;
 
-    private LocalDateTime dateAndTime;
+    private LocalDateTime date = LocalDateTime.now();
 
     @ManyToOne
     private ReaderEntity client;

@@ -2,7 +2,7 @@ package ru.chistoapp.api.dto;
 
 import lombok.Builder;
 import lombok.Data;
-import ru.chistoapp.store.Operation;
+import ru.chistoapp.store.TransactionType;
 
 import java.time.LocalDateTime;
 
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public class TransactionDto {
     private Long id;
 
-    private Operation operation;
+    private TransactionType transactionType;
 
     private LocalDateTime dateAndTime;
 
