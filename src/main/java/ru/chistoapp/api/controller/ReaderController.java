@@ -14,6 +14,7 @@ import ru.chistoapp.store.TransactionType;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @RestController
@@ -23,6 +24,8 @@ public class ReaderController {
     private final ReaderDtoFactory readerDtoFactory;
 
     private final String GET_MOST_ACTIVE_READER = "/api/readers/most_active";
+    private final String GET_READERS_SORTED_BY_UNRETURNED_BOOKS = "api/readers/sorted_by_unreturned_books";
+
 
     @GetMapping(GET_MOST_ACTIVE_READER)
     @Operation(summary = "Get the most active client", description = "Returns the client who has taken the most books.")
@@ -42,5 +45,28 @@ public class ReaderController {
                 .orElseThrow(() -> new RuntimeException("No clients found"));
 
         return readerDtoFactory.createReaderDto(mostActiveClient);
+    }
+
+    @GetMapping(GET_READERS_SORTED_BY_UNRETURNED_BOOKS)
+    @Operation(summary = "Get readers sorted by the number of unreturned books ",
+            description = "Returns a list of all readers sorted by the number of unreturned books in descending order.")
+    public List<ReaderDto> getReadersSortedByUnreturnedBooks() {
+
+        List<TransactionEntity> transactions = transactionRepository.findAll();
+        Map<ReaderEntity, Long> unreturnedBooksCount = new HashMap<>();
+        for (TransactionEntity transaction : transactions) {
+            if (transaction.getTransactionType().equals(TransactionType.TAKE)) {
+                ReaderEntity client = transaction.getClient();
+                unreturnedBooksCount.put(client, unreturnedBooksCount.getOrDefault(client, 0L) + 1);
+            } else if (transaction.getTransactionType().equals(TransactionType.RETURN)) {
+                ReaderEntity client = transaction.getClient();
+                unreturnedBooksCount.put(client, unreturnedBooksCount.getOrDefault(client, 0L) - 1);
+            }
+        }
+        return unreturnedBooksCount.entrySet().stream()
+                .sorted((e1, e2) -> Long.compare(e2.getValue(), e1.getValue()))
+                .map(Map.Entry::getKey)
+                .map(readerDtoFactory::createReaderDto)
+                .collect(Collectors.toList());
     }
 }
