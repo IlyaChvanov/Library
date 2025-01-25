@@ -2,6 +2,7 @@ package ru.chistoapp.api.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +22,7 @@ import java.util.Map;
 
 @RestController
 @AllArgsConstructor
+@Transactional
 public class AuthorController {
 
     private final AuthorDtoFactory authorDtoFactory;

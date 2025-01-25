@@ -1,6 +1,7 @@
 package ru.chistoapp.api.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @RestController
+@Transactional
 public class ReaderController {
 
     private final TransactionRepository transactionRepository;
